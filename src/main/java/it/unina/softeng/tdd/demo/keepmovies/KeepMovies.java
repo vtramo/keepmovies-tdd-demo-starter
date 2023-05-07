@@ -19,4 +19,8 @@ public class KeepMovies {
   public boolean addAll(Collection<Movie> moviesToAdd) {
     return movies.addAll(moviesToAdd);
   }
+
+  public Set<Movie> getMoviesSortedByYear() {
+    return null;
+  }
 }

@@ -93,6 +93,17 @@ class KeepMoviesSpecification {
 				assertThat(movies, containsInRelativeOrder(expectedMovies.toArray()));
 			}
 
+			@Test
+			@DisplayName("when sorting movies by year, it should return them in descending order by year")
+			void testSortingByYear() {
+				List<Movie> expectedMovies = new ArrayList<>(addedMovies);
+				expectedMovies.sort(comparing(Movie::getReleaseYear));
+
+				Set<Movie> movies = keepMovies.getMoviesSortedByYear();
+
+				assertThat(movies, containsInRelativeOrder(expectedMovies.toArray()));
+			}
+
 		}
 
 	}
