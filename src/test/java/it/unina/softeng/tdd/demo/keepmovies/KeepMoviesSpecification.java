@@ -56,6 +56,19 @@ class KeepMoviesSpecification {
 			assertThat(haveBeenAdded, is(true));
 			assertThat(keepMovies.getMovies(), containsInAnyOrder(moviesToAdd.toArray()));
 		}
+
+		@Test
+		@DisplayName("should not allow the same movie to be added twice")
+		void shouldNotAllowTheSameMovieToBeAddedTwice() {
+			Movie dunkirk 	   = new Movie("Dunkirk", Year.of(2017), "war"),
+				    dunkirkClone = new Movie("Dunkirk", Year.of(2017), "war");
+			keepMovies.add(dunkirk);
+
+			boolean hasBeenAdded = keepMovies.add(dunkirkClone);
+
+			assertThat(hasBeenAdded, is(false));
+			assertThat(keepMovies.getMovies(), contains(dunkirk));
+		}
 	}
 
 	static Collection<Movie> createACollectionOfMovies() {
