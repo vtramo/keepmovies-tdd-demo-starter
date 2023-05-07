@@ -5,11 +5,13 @@ import java.util.Set;
 
 public class KeepMovies {
 
+  private final Set<Movie> movies = new HashSet<>();
+
   public Set<Movie> getMovies() {
-    return new HashSet<>();
+    return movies;
   }
 
-  public boolean add(Movie joker) {
-    return false;
+  public boolean add(Movie movie) {
+    return movies.add(movie);
   }
 }
