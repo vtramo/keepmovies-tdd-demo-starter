@@ -69,4 +69,8 @@ public class Movie implements Comparable<Movie> {
 	public int compareTo(Movie o) {
 		return this.title.compareTo(o.title);
 	}
+
+	public boolean isWatched() {
+		return true;
+	}
 }
