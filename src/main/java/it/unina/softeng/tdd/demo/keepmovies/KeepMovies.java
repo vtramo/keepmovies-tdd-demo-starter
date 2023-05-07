@@ -28,6 +28,8 @@ public class KeepMovies {
   }
 
   public Set<Movie> getWatchedMovies() {
-    return null;
+    return movies.stream()
+      .filter(Movie::isWatched)
+      .collect(Collectors.toSet());
   }
 }
