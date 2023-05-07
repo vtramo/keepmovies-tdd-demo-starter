@@ -97,15 +97,13 @@ class KeepMoviesSpecification {
 			@DisplayName("when sorting movies by year, it should return them in descending order by year")
 			void testSortingByYear() {
 				List<Movie> expectedMovies = new ArrayList<>(addedMovies);
-				expectedMovies.sort(comparing(Movie::getReleaseYear));
+				expectedMovies.sort(comparing(Movie::getReleaseYear).thenComparing(Movie::getTitle).reversed());
 
 				Set<Movie> movies = keepMovies.getMoviesSortedByYear();
 
 				assertThat(movies, containsInRelativeOrder(expectedMovies.toArray()));
 			}
-
 		}
-
 	}
 
 	static List<Movie> createAListOfMovies() {
