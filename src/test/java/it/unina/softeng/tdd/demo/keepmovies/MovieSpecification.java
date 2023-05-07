@@ -30,5 +30,14 @@ class MovieSpecification {
     void shouldBeMarkedAsUnwatched() {
       assertThat(movie.isWatched(), is(equalTo(false)));
     }
+
+
+    @Test
+    @DisplayName("when set as watched should be marked as already watched")
+    void shouldBeMarkedAsWatchedWhenSetAsWatched() {
+      movie.setWatched(true);
+
+      assertThat(movie.isWatched(), is(equalTo(true)));
+    }
   }
 }
