@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static java.util.Comparator.comparing;
-
 public class KeepMovies {
 
   private final Set<Movie> movies = new TreeSet<>();
@@ -23,11 +21,7 @@ public class KeepMovies {
   }
 
   public Set<Movie> getMoviesSortedByYear() {
-    Set<Movie> sortedMovies = new TreeSet<>(
-      comparing(Movie::getReleaseYear)
-        .thenComparing(Movie::getTitle)
-        .reversed()
-    );
+    Set<Movie> sortedMovies = new TreeSet<>(Movie.comparingByYearThenComparingByTitleReversed);
     sortedMovies.addAll(movies);
     return sortedMovies;
   }

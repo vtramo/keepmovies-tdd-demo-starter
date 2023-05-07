@@ -1,12 +1,21 @@
 package it.unina.softeng.tdd.demo.keepmovies;
 
 import java.time.Year;
+import java.util.Comparator;
 import java.util.Objects;
+
+import static java.util.Comparator.comparing;
 
 /**
  * Movie is a simple POJO.
  */
 public class Movie implements Comparable<Movie> {
+
+	protected static final Comparator<Movie>
+		comparingByYearThenComparingByTitleReversed = comparing(Movie::getReleaseYear)
+			.thenComparing(Movie::getTitle)
+			.reversed();
+
 	private String title;
 	private Year releaseYear;
 	private String genre;
