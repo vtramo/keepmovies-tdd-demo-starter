@@ -1,6 +1,8 @@
 package it.unina.softeng.tdd.demo.keepmovies;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.time.Year;
@@ -13,6 +15,8 @@ import static org.hamcrest.Matchers.is;
 @DisplayName("A KeepMovies")
 class KeepMoviesSpecification {
 
+	KeepMovies keepMovies;
+
 	void someMoviesInCaseYouNeedThem() {
 		Movie joker, jojo, dunkirk, up;
 		joker   = new Movie("Joker", Year.of(2019), "thriller");
@@ -21,12 +25,21 @@ class KeepMoviesSpecification {
 		up      = new Movie("Up", Year.of(2009), "comedy-drama");
 	}
 
-	@Test
-	void shouldNotContainAnyMovieWhenInstantiated() {
-		KeepMovies keepMovies = new KeepMovies();
+	@Nested
+	@DisplayName("when instantiated")
+	class whenInstantiated {
 
-		Set<Movie> movies = keepMovies.getMovies();
+		@BeforeEach
+		void createNewKeepMovies() {
+			keepMovies = new KeepMovies();
+		}
 
-		assertThat(movies, is(empty()));
+		@Test
+		@DisplayName("should not contain any movie")
+		void shouldNotContainAnyMovie() {
+			Set<Movie> movies = keepMovies.getMovies();
+
+			assertThat(movies, is(empty()));
+		}
 	}
 }

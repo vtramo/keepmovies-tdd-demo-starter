@@ -3,7 +3,11 @@
   <groupId>it.unina.softeng.tdd.demo</groupId>
   <artifactId>keepmovies-tdd-demo</artifactId>
   <version>1.0.0</version>
-  <name>KeepMovies TDD Demo</name>
+	<properties>
+		<maven.compiler.source>19</maven.compiler.source>
+		<maven.compiler.target>19</maven.compiler.target>
+	</properties>
+	<name>KeepMovies TDD Demo</name>
   <description>A simple Java program to demonstrate test-driven development</description>
   
 	 <dependencies>
