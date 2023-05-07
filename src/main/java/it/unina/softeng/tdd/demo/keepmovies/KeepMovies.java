@@ -1,5 +1,6 @@
 package it.unina.softeng.tdd.demo.keepmovies;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
@@ -35,6 +36,8 @@ public class KeepMovies {
   }
 
   public Set<Movie> markAsWatched(Movie ... movies) {
-    return null;
+    return Arrays.stream(movies)
+      .peek(movie -> movie.setWatched(true))
+      .collect(toSet());
   }
 }
