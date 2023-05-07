@@ -19,6 +19,7 @@ public class Movie implements Comparable<Movie> {
 	private String title;
 	private Year releaseYear;
 	private String genre;
+	private boolean watched;
 	
 	public Movie(String title, Year releaseYear, String genre) {
 		this.title = title;
@@ -71,6 +72,6 @@ public class Movie implements Comparable<Movie> {
 	}
 
 	public boolean isWatched() {
-		return true;
+		return watched;
 	}
 }
