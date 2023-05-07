@@ -47,7 +47,7 @@ public class Movie implements Comparable<Movie> {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public void setWatched(boolean watched) { }
+	public void setWatched(boolean watched) { this.watched = watched; }
 
 	@Override
 	public String toString() {
