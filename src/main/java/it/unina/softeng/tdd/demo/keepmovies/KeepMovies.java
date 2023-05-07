@@ -3,6 +3,7 @@ package it.unina.softeng.tdd.demo.keepmovies;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class KeepMovies {
 
@@ -24,5 +25,9 @@ public class KeepMovies {
     Set<Movie> sortedMovies = new TreeSet<>(Movie.comparingByYearThenComparingByTitleReversed);
     sortedMovies.addAll(movies);
     return sortedMovies;
+  }
+
+  public Set<Movie> getWatchedMovies() {
+    return null;
   }
 }

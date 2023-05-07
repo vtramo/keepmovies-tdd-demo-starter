@@ -103,6 +103,12 @@ class KeepMoviesSpecification {
 
 				assertThat(movies, containsInRelativeOrder(expectedMovies.toArray()));
 			}
+
+			@Test
+			@DisplayName("should contains no movies marked as watched")
+			void testNoWatchedMovies() {
+				assertThat(keepMovies.getWatchedMovies(), hasSize(0));
+			}
 		}
 	}
 
