@@ -1,6 +1,7 @@
 package it.unina.softeng.tdd.demo.keepmovies;
 
 import java.time.Year;
+import java.util.Objects;
 
 /**
  * Movie is a simple POJO.
@@ -40,5 +41,18 @@ public class Movie {
 	@Override
 	public String toString() {
 		return "Movie [title=" + title + ", releaseYear=" + releaseYear + ", genre=" + genre + "]";
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Movie movie = (Movie) o;
+		return title.equals(movie.title) && releaseYear.equals(movie.releaseYear) && genre.equals(movie.genre);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(title, releaseYear, genre);
 	}
 }
