@@ -109,6 +109,20 @@ class KeepMoviesSpecification {
 			void testNoWatchedMovies() {
 				assertThat(keepMovies.getWatchedMovies(), hasSize(0));
 			}
+
+			@Test
+			@DisplayName("when setting movies as already watched, they should then be marked as watched")
+			void whenSettingMoviesAsAlreadySeenTheyShouldThenBeMarkedAsSeen() {
+				Movie movie1 = addedMovies.get(1),
+							movie2 = addedMovies.get(3);
+
+				Set<Movie> moviesMarkedAsWatched = keepMovies.markAsWatched(movie1, movie2);
+
+				assertThat(movie1.isWatched(), is(equalTo(true)));
+				assertThat(movie2.isWatched(), is(equalTo(true)));
+				assertThat(keepMovies.getWatchedMovies(), containsInAnyOrder(movie1, movie2));
+				assertThat(moviesMarkedAsWatched, containsInAnyOrder(movie1, movie2));
+			}
 		}
 	}
 

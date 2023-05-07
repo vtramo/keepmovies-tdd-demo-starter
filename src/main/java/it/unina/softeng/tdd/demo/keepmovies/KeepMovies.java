@@ -3,7 +3,8 @@ package it.unina.softeng.tdd.demo.keepmovies;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toSet;
 
 public class KeepMovies {
 
@@ -30,6 +31,10 @@ public class KeepMovies {
   public Set<Movie> getWatchedMovies() {
     return movies.stream()
       .filter(Movie::isWatched)
-      .collect(Collectors.toSet());
+      .collect(toSet());
+  }
+
+  public Set<Movie> markAsWatched(Movie ... movies) {
+    return null;
   }
 }
