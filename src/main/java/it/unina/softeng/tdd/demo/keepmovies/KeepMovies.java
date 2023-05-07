@@ -17,6 +17,6 @@ public class KeepMovies {
   }
 
   public boolean addAll(List<Movie> moviesToAdd) {
-    return false;
+    return movies.addAll(moviesToAdd);
   }
 }

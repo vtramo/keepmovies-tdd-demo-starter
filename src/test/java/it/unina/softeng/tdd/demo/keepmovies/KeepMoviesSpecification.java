@@ -65,7 +65,7 @@ class KeepMoviesSpecification {
 			boolean haveBeenAdded = keepMovies.addAll(moviesToAdd);
 
 			assertThat(haveBeenAdded, is(true));
-			assertThat(keepMovies.getMovies(), containsInAnyOrder(moviesToAdd));
+			assertThat(keepMovies.getMovies(), containsInAnyOrder(joker, jojo, dunkirk, up));
 		}
 	}
 }
