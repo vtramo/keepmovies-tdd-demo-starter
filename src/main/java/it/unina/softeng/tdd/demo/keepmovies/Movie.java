@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Movie is a simple POJO.
  */
-public class Movie {
+public class Movie implements Comparable<Movie> {
 	private String title;
 	private Year releaseYear;
 	private String genre;
@@ -54,5 +54,10 @@ public class Movie {
 	@Override
 	public int hashCode() {
 		return Objects.hash(title, releaseYear, genre);
+	}
+
+	@Override
+	public int compareTo(Movie o) {
+		return 0;
 	}
 }

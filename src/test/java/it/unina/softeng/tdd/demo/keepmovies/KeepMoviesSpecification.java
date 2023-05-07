@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.time.Year;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import static java.util.Comparator.comparing;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -49,7 +48,7 @@ class KeepMoviesSpecification {
 		@Test
 		@DisplayName("should keep track of a set of movies")
 		void shouldKeepTrackOfASetOfMovies() {
-			Collection<Movie> moviesToAdd = createACollectionOfMovies();
+			Collection<Movie> moviesToAdd = createAListOfMovies();
 
 			boolean haveBeenAdded = keepMovies.addAll(moviesToAdd);
 
@@ -69,9 +68,22 @@ class KeepMoviesSpecification {
 			assertThat(hasBeenAdded, is(false));
 			assertThat(keepMovies.getMovies(), contains(dunkirk));
 		}
+
+		@Test
+		@DisplayName("when adding a collection of movies it should return them in lexicographic order")
+		void testLexicographicOrder() {
+			List<Movie> moviesToAdd = createAListOfMovies();
+			List<Movie> expectedMovies = new ArrayList<>(moviesToAdd);
+			expectedMovies.sort(comparing(Movie::getTitle));
+
+			boolean haveBeenAdded = keepMovies.addAll(moviesToAdd);
+
+			assertThat(haveBeenAdded, is(true));
+			assertThat(keepMovies.getMovies(), containsInRelativeOrder(expectedMovies.toArray()));
+		}
 	}
 
-	static Collection<Movie> createACollectionOfMovies() {
+	static List<Movie> createAListOfMovies() {
 		return List.of(
 			new Movie("Joker", Year.of(2019), "thriller"),
 			new Movie("Jojo Rabbit", Year.of(2019), "comedy-drama"),
