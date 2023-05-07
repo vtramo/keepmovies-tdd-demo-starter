@@ -9,8 +9,7 @@ import java.time.Year;
 import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 @DisplayName("A KeepMovies")
 class KeepMoviesSpecification {
@@ -40,6 +39,17 @@ class KeepMoviesSpecification {
 			Set<Movie> movies = keepMovies.getMovies();
 
 			assertThat(movies, is(empty()));
+		}
+
+		@Test
+		@DisplayName("should keep track of a movie")
+		void shouldKeepTrackOfAMovie() {
+			Movie joker = new Movie("Joker", Year.of(2019), "thriller");
+
+			boolean hasBeenAdded = keepMovies.add(joker);
+
+			assertThat(hasBeenAdded, is(true));
+			assertThat(keepMovies.getMovies(), contains(joker));
 		}
 	}
 }

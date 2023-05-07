@@ -8,4 +8,8 @@ public class KeepMovies {
   public Set<Movie> getMovies() {
     return new HashSet<>();
   }
+
+  public boolean add(Movie joker) {
+    return false;
+  }
 }
