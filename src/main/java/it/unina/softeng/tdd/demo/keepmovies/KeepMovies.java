@@ -1,12 +1,12 @@
 package it.unina.softeng.tdd.demo.keepmovies;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class KeepMovies {
 
-  private final Set<Movie> movies = new HashSet<>();
+  private final Set<Movie> movies = new TreeSet<>();
 
   public Set<Movie> getMovies() {
     return movies;

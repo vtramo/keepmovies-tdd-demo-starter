@@ -58,6 +58,6 @@ public class Movie implements Comparable<Movie> {
 
 	@Override
 	public int compareTo(Movie o) {
-		return 0;
+		return this.title.compareTo(o.title);
 	}
 }
