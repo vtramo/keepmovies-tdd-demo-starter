@@ -69,18 +69,32 @@ class KeepMoviesSpecification {
 			assertThat(keepMovies.getMovies(), contains(dunkirk));
 		}
 
-		@Test
-		@DisplayName("when adding a collection of movies it should return them in lexicographic order")
-		void testLexicographicOrder() {
-			List<Movie> moviesToAdd = createAListOfMovies();
-			List<Movie> expectedMovies = new ArrayList<>(moviesToAdd);
-			expectedMovies.sort(comparing(Movie::getTitle));
+		@Nested
+		@DisplayName("after adding a collection of movies")
+		class AfterAddingMovies {
 
-			boolean haveBeenAdded = keepMovies.addAll(moviesToAdd);
+			List<Movie> addedMovies;
 
-			assertThat(haveBeenAdded, is(true));
-			assertThat(keepMovies.getMovies(), containsInRelativeOrder(expectedMovies.toArray()));
+			@BeforeEach
+			void addMovies() {
+				List<Movie> movies = createAListOfMovies();
+				keepMovies.addAll(movies);
+				addedMovies = movies;
+			}
+
+			@Test
+			@DisplayName("should return them in lexicographic order")
+			void testLexicographicOrder() {
+				List<Movie> expectedMovies = new ArrayList<>(addedMovies);
+				expectedMovies.sort(comparing(Movie::getTitle));
+
+				Set<Movie> movies = keepMovies.getMovies();
+
+				assertThat(movies, containsInRelativeOrder(expectedMovies.toArray()));
+			}
+
 		}
+
 	}
 
 	static List<Movie> createAListOfMovies() {
