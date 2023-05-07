@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.time.Year;
+import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -50,6 +51,21 @@ class KeepMoviesSpecification {
 
 			assertThat(hasBeenAdded, is(true));
 			assertThat(keepMovies.getMovies(), contains(joker));
+		}
+
+		@Test
+		@DisplayName("should keep track of a set of movies")
+		void shouldKeepTrackOfASetOfMovies() {
+			Movie joker   = new Movie("Joker", Year.of(2019), "thriller"),
+					  jojo    = new Movie("Jojo Rabbit", Year.of(2019), "comedy-drama"),
+						dunkirk = new Movie("Dunkirk", Year.of(2017), "war"),
+						up      = new Movie("Up", Year.of(2009), "comedy-drama");
+			List<Movie> moviesToAdd = List.of(joker, jojo, dunkirk, up);
+
+			boolean haveBeenAdded = keepMovies.addAll(moviesToAdd);
+
+			assertThat(haveBeenAdded, is(true));
+			assertThat(keepMovies.getMovies(), containsInAnyOrder(moviesToAdd));
 		}
 	}
 }
