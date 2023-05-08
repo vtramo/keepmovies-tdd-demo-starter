@@ -11,6 +11,7 @@ import java.util.*;
 import static java.util.Comparator.comparing;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("A KeepMovies")
 class KeepMoviesSpecification {
@@ -122,6 +123,17 @@ class KeepMoviesSpecification {
 				assertThat(movie2.isWatched(), is(equalTo(true)));
 				assertThat(keepMovies.getWatchedMovies(), containsInAnyOrder(movie1, movie2));
 				assertThat(moviesMarkedAsWatched, containsInAnyOrder(movie1, movie2));
+			}
+
+			@Test
+			@DisplayName("when setting a movie that doesn't exist as watched, then an exception should be thrown")
+			void whenSettingANonexistentMovieAsWatchedShouldThrowException() {
+				Movie nonExistentMovie = new Movie("Nonexistent", Year.of(2010), "fantasy");
+
+				assertThrows(IllegalArgumentException.class,
+					() -> keepMovies.markAsWatched(nonExistentMovie),
+					"The " + nonExistentMovie + " does not exist!"
+				);
 			}
 		}
 	}
