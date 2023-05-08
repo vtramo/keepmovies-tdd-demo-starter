@@ -1,15 +1,13 @@
 package it.unina.softeng.tdd.demo.keepmovies;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toSet;
 
 public class KeepMovies {
 
-  private final Set<Movie> movies = new TreeSet<>();
+  private Set<Movie> movies = new TreeSet<>();
 
   public Set<Movie> getMovies() {
     return movies;
@@ -47,6 +45,13 @@ public class KeepMovies {
   }
 
   public Set<Movie> deleteWatchedMovies() {
-    return null;
+    Set<Movie> deletedWatchedMovies = new HashSet<>();
+
+    this.movies = movies.stream()
+      .peek(movie -> { if (movie.isWatched()) deletedWatchedMovies.add(movie); })
+      .filter(Predicate.not(Movie::isWatched))
+      .collect(toSet());
+
+    return deletedWatchedMovies;
   }
 }
