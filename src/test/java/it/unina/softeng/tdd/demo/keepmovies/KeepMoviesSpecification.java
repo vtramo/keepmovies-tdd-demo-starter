@@ -161,6 +161,17 @@ class KeepMoviesSpecification {
 
 				assertThat(moviesByYear, is(equalTo(expectedMoviesByYear)));
 			}
+
+			@Test
+			@DisplayName("when grouping movies by genre should group them correctly")
+			void whenGroupingMoviesByGenreShouldGroupThemCorrectly() {
+				Map<String, Set<Movie>> expectedMoviesByGenre = addedMovies.stream()
+					.collect(groupingBy(Movie::getGenre, toSet()));
+
+				Map<String, Set<Movie>> moviesByGenre = keepMovies.groupByGenre();
+
+				assertThat(moviesByGenre, is(equalTo(expectedMoviesByGenre)));
+			}
 		}
 	}
 
