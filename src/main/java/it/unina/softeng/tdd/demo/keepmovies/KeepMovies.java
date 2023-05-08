@@ -36,6 +36,11 @@ public class KeepMovies {
   }
 
   public Set<Movie> markAsWatched(Movie ... movies) {
+    Arrays.stream(movies).forEach(movie -> {
+      if (!this.movies.contains(movie))
+        throw new IllegalArgumentException("The " + movie + " does not exist!");
+    });
+
     return Arrays.stream(movies)
       .peek(movie -> movie.setWatched(true))
       .collect(toSet());
