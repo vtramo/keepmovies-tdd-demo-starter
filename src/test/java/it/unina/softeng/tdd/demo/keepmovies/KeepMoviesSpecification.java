@@ -9,6 +9,8 @@ import java.time.Year;
 import java.util.*;
 
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toSet;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -147,6 +149,17 @@ class KeepMoviesSpecification {
 				assertThat(keepMovies.getMovies(), both(containsInAnyOrder(unwatchedMovies.toArray()))
 					.and(everyItem(hasProperty("watched", is(equalTo(false))))));
 				assertThat(deletedWatchedMovies, containsInAnyOrder(watchedMovies.toArray()));
+			}
+
+			@Test
+			@DisplayName("when grouping movies by year should group them correctly")
+			void whenGroupingMoviesByYearShouldGroupThemCorrectly() {
+				Map<Year, Set<Movie>> expectedMoviesByYear = addedMovies.stream()
+					.collect(groupingBy(Movie::getReleaseYear, toSet()));
+
+				Map<Year, Set<Movie>> moviesByYear = keepMovies.groupByYear();
+
+				assertThat(moviesByYear, is(equalTo(expectedMoviesByYear)));
 			}
 		}
 	}

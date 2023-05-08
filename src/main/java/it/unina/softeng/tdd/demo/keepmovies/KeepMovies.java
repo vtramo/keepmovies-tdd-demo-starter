@@ -1,5 +1,6 @@
 package it.unina.softeng.tdd.demo.keepmovies;
 
+import java.time.Year;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -53,5 +54,9 @@ public class KeepMovies {
       .collect(toSet());
 
     return deletedWatchedMovies;
+  }
+
+  public Map<Year, List<Movie>> groupByYear(Year year) {
+    return null;
   }
 }
