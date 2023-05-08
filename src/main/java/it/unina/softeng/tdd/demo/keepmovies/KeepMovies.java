@@ -4,6 +4,7 @@ import java.time.Year;
 import java.util.*;
 import java.util.function.Predicate;
 
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toSet;
 
 public class KeepMovies {
@@ -56,7 +57,8 @@ public class KeepMovies {
     return deletedWatchedMovies;
   }
 
-  public Map<Year, List<Movie>> groupByYear(Year year) {
-    return null;
+  public Map<Year, Set<Movie>> groupByYear() {
+    return movies.stream()
+      .collect(groupingBy(Movie::getReleaseYear, toSet()));
   }
 }
