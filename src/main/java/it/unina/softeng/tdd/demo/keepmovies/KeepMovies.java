@@ -63,6 +63,7 @@ public class KeepMovies {
   }
 
   public Map<String, Set<Movie>> groupByGenre() {
-    return null;
+    return movies.stream()
+      .collect(groupingBy(Movie::getGenre, toSet()));
   }
 }
