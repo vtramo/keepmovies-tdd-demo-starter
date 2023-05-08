@@ -135,6 +135,19 @@ class KeepMoviesSpecification {
 					"The " + nonExistentMovie + " does not exist!"
 				);
 			}
+
+			@Test
+			@DisplayName("when deleting all movies marked as watched then should contains only unwatched movies")
+			void whenDeletingAllMoviesMarkedAsWatchedThenShouldContainsOnlyUnwatchedMovies() {
+				Set<Movie> watchedMovies = keepMovies.markAsWatched(addedMovies.get(0), addedMovies.get(1));
+				Set<Movie> unwatchedMovies = Set.of(addedMovies.get(2), addedMovies.get(3));
+
+				Set<Movie> deletedWatchedMovies = keepMovies.deleteWatchedMovies();
+
+				assertThat(keepMovies.getMovies(), both(containsInAnyOrder(unwatchedMovies.toArray()))
+					.and(everyItem(hasProperty("watched", is(equalTo(false))))));
+				assertThat(deletedWatchedMovies, containsInAnyOrder(watchedMovies.toArray()));
+			}
 		}
 	}
 

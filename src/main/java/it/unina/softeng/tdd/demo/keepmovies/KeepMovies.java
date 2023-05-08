@@ -45,4 +45,8 @@ public class KeepMovies {
       .peek(movie -> movie.setWatched(true))
       .collect(toSet());
   }
+
+  public Set<Movie> deleteWatchedMovies() {
+    return null;
+  }
 }
